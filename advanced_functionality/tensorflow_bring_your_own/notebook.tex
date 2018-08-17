@@ -1,0 +1,1140 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{tensorflow\_bring\_your\_own}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Building a TensorFlow Container for Your Training and Hosting
+Algorithms}\label{building-a-tensorflow-container-for-your-training-and-hosting-algorithms}
+
+To use your own algorithms to train or deploy a model in Amazon
+SageMaker, package them in Docker containers. By packaging an algorithm
+in a container, you can use almost any code with Amazon SageMaker,
+regardless of the programming language, environment, framework, or
+dependencies. This example shows how to build a TensorFlow Docker
+container and use it for training and inference in Amazon SageMaker.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Section \ref{building-a-tensorflow-container-for-your_training-and-hosting-algorithms}
+\item
+  Section \ref{when-should-you-create-a-container-for-your-algorithm}
+\item
+  Section \ref{required-permissions}
+\item
+  Section \ref{the-example}
+\item
+  Section \ref{the-presentation}
+\item
+  Section \ref{part-1-packaging-and-uploading-your-algorithm-for-use-with-amazon-sagemaker}
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \tightlist
+  \item
+    Section \ref{docker-overview}
+  \item
+    Section \ref{how-amazon-sagemaker-runs-your-docker-container}
+  \item
+    Section \ref{how-amazon-sagemaker-runs-your-container-during-training}
+
+    \begin{enumerate}
+    \def\labelenumiii{\arabic{enumiii}.}
+    \tightlist
+    \item
+      Section \ref{the-input}
+    \item
+      Section \ref{the-output}
+    \end{enumerate}
+  \item
+    Section \ref{how-amazon-sagemaker-runs-your-container-during-hosting}
+  \item
+    Section \ref{the-example-container}
+  \item
+    Section \ref{the-dockerfile}
+  \item
+    Section \ref{build-and-register-the-container}
+  \end{enumerate}
+\item
+  Section \ref{test-your-algorithm-locally}
+\item
+  Section \ref{download-the-cifar-10-dataset}
+\item
+  Section \ref{train-locally-with-the-amazon-sagemaker-python-sdk}
+\item
+  Section \ref{fit-deploy-and-predict}
+\item
+  Section \ref{make-predictions-using-the-amazon-sagemaker-python-sdk}
+\item
+  Section \ref{part-2-training-and-hosting-your-algorithm-in-amazon-sagemaker}
+\item
+  Section \ref{set-up-the-environment}
+\item
+  Section \ref{create-the-session}
+\item
+  Section \ref{upload-the-data-for-training}
+\item
+  Section \ref{training-on--amazon-sagemaker}
+\item
+  Section \ref{optional-clean20up}\\
+\item
+  Section \ref{reference}
+\end{enumerate}
+
+\emph{or} I'm impatient, just Section \ref{the-dockerfile}!
+
+\subsubsection{When Should You Create a Container for Your
+Algorithm?}\label{when-should-you-create-a-container-for-your-algorithm}
+
+It's not always necessary to create a container to use your own code in
+Amazon SageMaker. If you use a framework that's supported by Amazon
+SageMaker, such as Apache MXNet or TensorFlow, you can use the SDK entry
+points for that framework to supply the Python code that implements your
+algorithm. We regularly expand the set of supported frameworks, so
+always check to see if the framework that your algorithm was written in
+is supported.
+
+However, even if there is SDK support for your framework, sometimes it's
+more effective to build your own container. You might want to build your
+own container if the code that implements your algorithm is complex or
+if you need to make additions to the framework.
+
+If your framework is supported, you might consider building your own
+container for the following reasons:
+
+\begin{itemize}
+\tightlist
+\item
+  A specific version isn't supported.
+\item
+  You need to configure and install your dependencies and environment.
+\item
+  You use a different training or hosting solution than the one
+  provided.
+\end{itemize}
+
+\subsubsection{Required Permissions}\label{required-permissions}
+
+This notebook creates new repositories in Amazon Elastic Container
+Registry (Amazon ECR), so you need permissions beyond those granted by
+the \texttt{SageMakerFullAccess} permissions to run it. To add these
+permissions, add the \texttt{AmazonEC2ContainerRegistryFullAccess}
+managed policy to the AWS Identity and Access Management (IAM) role that
+you used to start your notebook instance. The new permissions are
+available immediately (you don't need to restart your notebook
+instance).
+
+\subsubsection{The Example}\label{the-example}
+
+In this example, we show how to package a custom TensorFlow container
+with an example written in Python. The example uses the CIFAR-10 dataset
+for training and TensorFlow Serving for inference. You can use another
+inference solution by modifying the Docker container.
+
+We use a single image for both training and hosting because it's easier
+to manage one image. If training and hosting have different
+requirements, you might want to create a separate Dockerfile for each,
+then build two images. Choose the approach that is easier to develop and
+manage.
+
+If you're using Amazon SageMaker only for training or only for hosting,
+build only the required functionality into your container.
+
+\subsubsection{The Presentation}\label{the-presentation}
+
+This example is divided into two parts. The first explains how to
+\emph{build} the container and the second explains how to \emph{use} the
+container.
+
+    \subsection{Part 1: Packaging and Uploading Your Algorithm for Use with
+Amazon
+SageMaker}\label{part-1-packaging-and-uploading-your-algorithm-for-use-with-amazon-sagemaker}
+
+\subsubsection{Docker Overview}\label{docker-overview}
+
+If you're familiar with Docker, you can skip to
+Section \ref{how-amazon-sagemaker-runs-your-docker-container}
+(\#How-Amazon-SageMaker-runs-your-Docker-container).
+
+Docker has become very popular in programming and devops communities
+because of its flexibility and its well-defined specification for how
+code can be run in its containers. It is the underpinning of many
+services built in the past few years, such as {[}Amazon Elastic
+Container Service (Amazon ECS){]}. Although Docker containers are
+unfamiliar to many data scientists, they aren't difficult to build and
+use, and they can significantly simplify software package deployment.
+
+You use Docker to package arbitrary code into an \emph{image} that is
+totally self-contained. After creating the image, you use Docker to run
+a \emph{container} based on that image. Running a container is just like
+running a program, except that a container creates a fully
+self-contained environment for the program to run in. Containers are
+isolated from each other and from the host environment, so they run your
+program the way it is set up, no matter where you run it.
+
+Docker is more powerful than environment managers like Conda or
+virtualenv because it is completely language independent, and because it
+comprises your whole operating environment, including startup commands,
+and environment variable.
+
+A Docker container is like a virtual machine, but it is much lighter
+weight. For example, a program running in a container can start in less
+than a second, and many containers can run simultaneously on the same
+physical or virtual machine instance.
+
+Docker uses a simple file called a \texttt{Dockerfile} to specify how
+the image is assembled. You'll see an example in this walkthrough. You
+can build your Docker images based on Docker images that you've already
+built or on images built by others.
+
+Amazon SageMaker uses Docker to enable users to train and deploy
+arbitrary algorithms. In Amazon SageMaker, Docker containers are invoked
+one way for training and another, slightly different, way for hosting.
+
+For more information about Docker, see the following:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://www.docker.com}{Docker home page}
+\item
+  \href{https://docs.docker.com/get-started/}{Getting started with
+  Docker}
+\item
+  \href{https://docs.docker.com/engine/reference/builder/}{Dockerfile
+  reference}
+\item
+  \href{https://docs.docker.com/engine/reference/run/}{\texttt{docker\ run}
+  reference}
+\end{itemize}
+
+\subsubsection{How Amazon SageMaker Runs Your Docker
+Container}\label{how-amazon-sagemaker-runs-your-docker-container}
+
+Because you can run the same image in training or hosting, Amazon
+SageMaker runs your container with the argument \texttt{train} or
+\texttt{serve}. How your container processes this argument depends on
+the container.
+
+\begin{itemize}
+\tightlist
+\item
+  In this example, you don't define an \texttt{ENTRYPOINT} in the
+  Dockerfile, so Docker runs the command
+  \href{https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-training-algo.html}{\texttt{train}
+  at training time} and
+  \href{https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-inference-code.html}{\texttt{serve}
+  at serving time}. In this example, you define these as executable
+  Python scripts, but you could use any program that you want to start
+  in that environment.
+\item
+  If you specify a program as an \texttt{ENTRYPOINT} in the Dockerfile,
+  that program runs at startup, and its first argument is \texttt{train}
+  or \texttt{serve}. The program looks at that argument and decides what
+  to do.
+\item
+  If you are building separate containers for training and hosting (or
+  building for only one or the other), you can define a program as an
+  \texttt{ENTRYPOINT} in the Dockerfile and ignore (or verify) the first
+  argument that is passed in.
+\end{itemize}
+
+\paragraph{How Amazon SageMaker Runs Your Container During
+Training}\label{how-amazon-sagemaker-runs-your-container-during-training}
+
+When Amazon SageMaker runs training, your \texttt{train} script runs as
+in a regular Python program. The \texttt{/opt/ml} directory includes the
+following files:
+
+\begin{verbatim}
+/opt/ml
+├── input
+│   ├── config
+│   │   ├── hyperparameters.json
+│   │   └── resourceConfig.json
+│   └── data
+│       └── <channel_name>
+│           └── <input data>
+├── model
+│   └── <model files>
+└── output
+    └── failure
+\end{verbatim}
+
+\subparagraph{The Input}\label{the-input}
+
+Input files provide the following: * \texttt{/opt/ml/input/config}
+contains information to control how your program runs.
+\texttt{hyperparameters.json} is a JSON-formatted dictionary that maps
+hyperparameter names to values. These values are always strings, so you
+might need to convert them. \texttt{resourceConfig.json} is a
+JSON-formatted file that describes the network layout used for
+distributed training. *
+\texttt{/opt/ml/input/data/\textless{}channel\_name\textgreater{}/} (for
+File mode) contains the input data for that channel. The channels are
+created based on the call to the CreateTrainingJob operation, but it's
+important that channels match algorithm expectations. The files for each
+channel are copied from Amazon Simple Storage Service (Amazon S3) to
+this directory, preserving the tree structure indicated by the S3 key
+structure. *
+\texttt{/opt/ml/input/data/\textless{}channel\_name\textgreater{}\_\textless{}epoch\_number\textgreater{}}
+(for Pipe mode) is the pipe for a given epoch. Epochs start at zero and
+increment by one each time you read them. There is no limit to the
+number of epochs that you can run, but you must close each pipe before
+reading the next epoch.
+
+\subparagraph{The Output}\label{the-output}
+
+There are two output directories: * \texttt{/opt/ml/model/} is the
+directory where you write the model that your algorithm generates. Your
+model can be in any format. It can be a single file or a whole directory
+tree. Amazon SageMaker packages files in this directory into a
+compressed tar archive file. This file is made available at the Amazon
+S3 location returned in the \texttt{DescribeTrainingJob} response. *
+\texttt{/opt/ml/output} is the directory where the algorithm can write a
+file \texttt{failure} that describes why the job failed. The contents of
+this file are returned in the \texttt{FailureReason} field of the
+\texttt{DescribeTrainingJob} response. For jobs that succeed, there is
+no reason to write this file because Amazon SageMaker ignores it.
+
+\paragraph{How Amazon SageMaker Runs Your Container During
+Hosting}\label{how-amazon-sagemaker-runs-your-container-during-hosting}
+
+Hosting requires a very different model than training because hosting
+reponds to inference requests that come in through HTTP. In this
+example, we use \href{https://www.tensorflow.org/serving/}{TensorFlow
+Serving}, but you can customize the hosting solution. For an example,
+see
+\href{https://github.com/awslabs/amazon-sagemaker-examples/blob/master/advanced_functionality/scikit_bring_your_own/scikit_bring_your_own.ipynb}{Python
+serving stack within the scikit learn example}.
+
+Amazon SageMaker hosting uses two URLs that are included in the
+container:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{/ping} receives \texttt{GET} requests from the infrastructure.
+  If the container is accepting requests, your program returns 200.
+\item
+  \texttt{/invocations} is the endpoint that receives client inference
+  \texttt{POST} requests. The format of the request and the response is
+  up to the algorithm. If the client supplied \texttt{ContentType} and
+  \texttt{Accept} headers, these are passed in too.
+\end{itemize}
+
+In the container, the model files are in the same place that they were
+written to during training:
+
+\begin{verbatim}
+/opt/ml
+└── model
+    └── <model files>
+\end{verbatim}
+
+    \subsubsection{The Example Container}\label{the-example-container}
+
+The \texttt{container} directory contains all of the components that you
+need to package the example algorithm for Amazon SageMager:
+
+\begin{verbatim}
+.
+├── Dockerfile
+├── build_and_push.sh
+└── cifar10
+    ├── cifar10.py
+    ├── resnet_model.py
+    ├── nginx.conf
+    ├── serve
+    ├── train
+\end{verbatim}
+
+The components perform the following tasks:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\texttt{Dockerfile}} describes how to build your Docker
+  container image.
+\item
+  \textbf{\texttt{build\_and\_push.sh}} is a script that uses the
+  Dockerfile to build your container images and then pushes it to Amazon
+  ECR. You invoke the commands directly later in this notebook, but you
+  can copy and run the script for your own algorithms.
+\item
+  \textbf{\texttt{cifar10}} contains the files that are installed in the
+  container.
+\end{itemize}
+
+For this simple application, you install only five files in the
+container:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\texttt{cifar10.py}} is the program that implements your
+  training algorithm.
+\item
+  \textbf{\texttt{resnet\_model.py}} is the program that contains your
+  ResNet model.
+\item
+  \textbf{\texttt{nginx.conf}} is the configuration file for the nginx
+  front end. Generally, you should be able to take this file as is.
+\item
+  \textbf{\texttt{serve}} is the program that is started when the
+  container is started for hosting. It launches nginx and loads your
+  exported model with TensorFlow Serving.
+\item
+  \textbf{\texttt{train}} is the program that is invoked when the
+  container is run for training. Our implementation of this script
+  invokes cifar10.py with hyperparameter values retrieved from
+  /opt/ml/input/config/hyperparameters.json. We do this to avoid having
+  to modify the training algorithm program.
+\end{itemize}
+
+You might need only five files, but if you have many supporting
+routines, you might want to install more.
+
+This is the standard structure of our Python containers, although you
+are free to choose a different toolset and, therefore, could have a
+different layout. If you're writing in a different programming language,
+your layout will depend on the framework and tools that you choose.
+
+You probably will want to change two files for your application:
+\texttt{train} and \texttt{serve}.
+
+    \subsubsection{The Dockerfile}\label{the-dockerfile}
+
+The Dockerfile describes the image that you want to build. It describes
+the complete operating system installation of the system that you want
+to run. A running Docker container is much lighter than a full operating
+system, because it uses Linux on the host machine for basic operations.
+
+For the Python science stack, start with an official TensorFlow Docker
+image and run the standard tools to install TensorFlow Serving. Then add
+the code that implements your specific algorithm to the container, and
+set up the right environment for it to run under.
+
+Here's the Dockerfile for this example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{!}cat container/Dockerfile
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\# Copyright 2017-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+\#
+\# Licensed under the Apache License, Version 2.0 (the "License"). You
+\# may not use this file except in compliance with the License. A copy of
+\# the License is located at
+\#
+\#     http://aws.amazon.com/apache2.0/
+\#
+\# or in the "license" file accompanying this file. This file is
+\# distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+\# ANY KIND, either express or implied. See the License for the specific
+\# language governing permissions and limitations under the License.
+
+\# For more information on creating a Dockerfile
+\# https://docs.docker.com/compose/gettingstarted/\#step-2-create-a-dockerfile
+FROM tensorflow/tensorflow:1.8.0-py3
+
+RUN apt-get update \&\& apt-get install -y --no-install-recommends nginx curl
+
+\# Download TensorFlow Serving
+\# https://www.tensorflow.org/serving/setup\#installing\_the\_modelserver
+RUN echo "deb [arch=amd64] http://storage.googleapis.com/tensorflow-serving-apt stable tensorflow-model-server tensorflow-model-server-universal" | tee /etc/apt/sources.list.d/tensorflow-serving.list
+RUN curl https://storage.googleapis.com/tensorflow-serving-apt/tensorflow-serving.release.pub.gpg | apt-key add -
+RUN apt-get update \&\& apt-get install tensorflow-model-server
+
+ENV PATH="/opt/ml/code:\$\{PATH\}"
+
+\# /opt/ml and all subdirectories are utilized by SageMaker, we use the /code subdirectory to store our user code.
+COPY /cifar10 /opt/ml/code
+WORKDIR /opt/ml/code
+    \end{Verbatim}
+
+    \subsubsection{Build and Register the
+Container}\label{build-and-register-the-container}
+
+The following shell code uses \texttt{docker\ build} to build the
+container image and \texttt{docker\ push} to push the container image to
+Amazon ECR. This code is also available as the shell script
+\texttt{container/build-and-push.sh}, which you can run as
+\texttt{build-and-push.sh\ tensorflow-cifar10-example} to build the
+image \texttt{tensorflow-cifar10-example}.
+
+The code looks for an Amazon ECR repository in the account that you're
+using and the current default AWS Region (if you're using an Amazon
+SageMaker notebook instance, this is the Region where the notebook
+instance was created). If there is no Amazon ECR repository, the script
+creates it.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PYZpc{}\PYZpc{}sh
+        
+        \PY{c+c1}{\PYZsh{} The name of our algorithm}
+        \PY{n+nv}{algorithm\PYZus{}name}\PY{o}{=}tensorflow\PYZhy{}cifar10\PYZhy{}example
+        
+        \PY{n+nb}{cd} container
+        
+        chmod +x cifar10/train
+        chmod +x cifar10/serve
+        
+        \PY{n+nv}{account}\PY{o}{=}\PY{k}{\PYZdl{}(}aws sts get\PYZhy{}caller\PYZhy{}identity \PYZhy{}\PYZhy{}query Account \PYZhy{}\PYZhy{}output text\PY{k}{)}
+        
+        \PY{c+c1}{\PYZsh{} Get the region defined in the current configuration (default to us\PYZhy{}west\PYZhy{}2 if none defined)}
+        \PY{n+nv}{region}\PY{o}{=}\PY{k}{\PYZdl{}(}aws configure get region\PY{k}{)}
+        \PY{n+nv}{region}\PY{o}{=}\PY{l+s+si}{\PYZdl{}\PYZob{}}\PY{n+nv}{region}\PY{k}{:\PYZhy{}}\PY{n+nv}{us}\PY{p}{\PYZhy{}west\PYZhy{}2}\PY{l+s+si}{\PYZcb{}}
+        
+        \PY{n+nv}{fullname}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZdl{}\PYZob{}}\PY{n+nv}{account}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{.dkr.ecr.}\PY{l+s+si}{\PYZdl{}\PYZob{}}\PY{n+nv}{region}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{.amazonaws.com/}\PY{l+s+si}{\PYZdl{}\PYZob{}}\PY{n+nv}{algorithm\PYZus{}name}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{:latest}\PY{l+s+s2}{\PYZdq{}}
+        
+        \PY{c+c1}{\PYZsh{} If the repository doesn\PYZsq{}t exist in ECR, create it.}
+        
+        aws ecr describe\PYZhy{}repositories \PYZhy{}\PYZhy{}repository\PYZhy{}names \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZdl{}\PYZob{}}\PY{n+nv}{algorithm\PYZus{}name}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}} \PYZgt{} /dev/null \PY{l+m}{2}\PYZgt{}\PY{p}{\PYZam{}}\PY{l+m}{1}
+        
+        \PY{k}{if} \PY{o}{[} \PY{n+nv}{\PYZdl{}?} \PYZhy{}ne \PY{l+m}{0} \PY{o}{]}
+        \PY{k}{then}
+            aws ecr create\PYZhy{}repository \PYZhy{}\PYZhy{}repository\PYZhy{}name \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZdl{}\PYZob{}}\PY{n+nv}{algorithm\PYZus{}name}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}} \PYZgt{} /dev/null
+        \PY{k}{fi}
+        
+        \PY{c+c1}{\PYZsh{} Get the login command from ECR and execute it directly}
+        \PY{k}{\PYZdl{}(}aws ecr get\PYZhy{}login \PYZhy{}\PYZhy{}region \PY{l+s+si}{\PYZdl{}\PYZob{}}\PY{n+nv}{region}\PY{l+s+si}{\PYZcb{}} \PYZhy{}\PYZhy{}no\PYZhy{}include\PYZhy{}email\PY{k}{)}
+        
+        \PY{c+c1}{\PYZsh{} Build the docker image locally with the image name and then push it to ECR}
+        \PY{c+c1}{\PYZsh{} with the full name.}
+        
+        docker build  \PYZhy{}t \PY{l+s+si}{\PYZdl{}\PYZob{}}\PY{n+nv}{algorithm\PYZus{}name}\PY{l+s+si}{\PYZcb{}} .
+        docker tag \PY{l+s+si}{\PYZdl{}\PYZob{}}\PY{n+nv}{algorithm\PYZus{}name}\PY{l+s+si}{\PYZcb{}} \PY{l+s+si}{\PYZdl{}\PYZob{}}\PY{n+nv}{fullname}\PY{l+s+si}{\PYZcb{}}
+        
+        docker push \PY{l+s+si}{\PYZdl{}\PYZob{}}\PY{n+nv}{fullname}\PY{l+s+si}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \subsubsection{Test the Algorithm
+Locally}\label{test-the-algorithm-locally}
+
+When you're packaging your first algorithm for use with Amazon
+SageMaker, it's a good idea to test it to make sure it's working
+correctly. You use the
+\href{https://github.com/aws/sagemaker-python-sdk}{Amazon SageMaker
+Python SDK} to test both locally and on Amazon SageMaker. To test our
+algorithm, you need to download our dataset.
+
+For more examples of using the Amazon SageMaker Python SDK, see
+\href{https://github.com/awslabs/amazon-sagemaker-examples/tree/master/sagemaker-python-sdk}{Amazon
+SageMaker Examples}.
+
+    \subsubsection{Download the CIFAR-10
+Dataset}\label{download-the-cifar-10-dataset}
+
+The training algorithm expects training data to be in
+\href{https://www.tensorflow.org/guide/datasets}{TFRecords} file format.
+TFRecords format is a simple record-oriented binary format that many
+TensorFlow applications use for training data. The following Python
+script downloads the CIFAR-10 dataset and converts them into TFRecords.
+It is adapted from the
+\href{https://github.com/tensorflow/models/tree/master/tutorials/image/cifar10_estimator}{official
+TensorFlow CIFAR-10 example}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{!} python utils/generate\PYZus{}cifar10\PYZus{}tfrecords.py \PYZhy{}\PYZhy{}data\PYZhy{}dir\PY{o}{=}/tmp/cifar\PYZhy{}10\PYZhy{}data
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} There should be three tfrecords. (eval, train, validation)}
+        \PY{o}{!} ls /tmp/cifar\PYZhy{}10\PYZhy{}data
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+eval.tfrecords	train.tfrecords  validation.tfrecords
+
+    \end{Verbatim}
+
+    \subsubsection{Train Locally with the Amazon SageMaker Python
+SDK}\label{train-locally-with-the-amazon-sagemaker-python-sdk}
+
+To represent training, you use the Estimator class. You need to
+configure the following: 1. IAM role - The AWS execution role. 2.
+train\_instance\_count - The number of instances to use for training. 3.
+train\_instance\_type - The type of instance to use for training. For
+training locally, specify \texttt{local}. 4. image\_name - The name of
+the custom TensorFlow Docker image that we created. 5. hyperparameters -
+The hyperparameters that we want to pass.
+
+To set up the IAM role, you use a helper function in the Amazon
+SageMaker Python SDK. The function gets metadata from the notebook
+instance, so if you run it outside of a notebook instance, it throws an
+exception. To run the function outside of a notebook instance, you must
+provide an IAM role that has the required permissions. For more
+information, see Section \ref{permissions}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k+kn}{from} \PY{n+nn}{sagemaker} \PY{k}{import} \PY{n}{get\PYZus{}execution\PYZus{}role}
+        
+        \PY{n}{role} \PY{o}{=} \PY{n}{get\PYZus{}execution\PYZus{}role}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsubsection{Fit, Deploy, and Predict}\label{fit-deploy-and-predict}
+
+Now you can call \texttt{fit()} with the path to your local copy of the
+CIFAR-10 dataset prefixed with \texttt{file://}. This invokes the
+TensorFlow container with \texttt{train} and passes in your
+hyperparameters and other metadata as .json files in
+/opt/ml/input/config within the container.
+
+After training succeeds, the training algorithm outputs a trained model
+to the /opt/ml/model directory, which is used to handle predictions.
+
+You can then call \texttt{deploy()} with the instance\_count and
+instance\_type, \texttt{1} and \texttt{local}, respectively. This
+invokes the TensorFlow container with \texttt{serve}, which sets up your
+container to handle prediction requests through TensorFlow Serving. A
+predictor is returned, which you use to make inferences against your
+trained model.
+
+After you get your prediction, you can delete the endpoint.
+
+We recommend testing and training your training algorithm locally first,
+because it iterates faster and is easier to debug.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} Lets set up our SageMaker notebook instance for local mode.}
+        \PY{o}{!}/bin/bash ./utils/setup.sh
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+SageMaker instance route table setup is ok. We are good to go.
+SageMaker instance routing for Docker is ok. We are good to go!
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{from} \PY{n+nn}{sagemaker}\PY{n+nn}{.}\PY{n+nn}{estimator} \PY{k}{import} \PY{n}{Estimator}
+        
+        \PY{n}{hyperparameters} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{train\PYZhy{}steps}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{100}\PY{p}{\PYZcb{}}
+        
+        \PY{n}{instance\PYZus{}type} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{local}\PY{l+s+s1}{\PYZsq{}}
+        
+        \PY{n}{estimator} \PY{o}{=} \PY{n}{Estimator}\PY{p}{(}\PY{n}{role}\PY{o}{=}\PY{n}{role}\PY{p}{,}
+                              \PY{n}{train\PYZus{}instance\PYZus{}count}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}
+                              \PY{n}{train\PYZus{}instance\PYZus{}type}\PY{o}{=}\PY{n}{instance\PYZus{}type}\PY{p}{,}
+                              \PY{n}{image\PYZus{}name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tensorflow\PYZus{}cifar10\PYZus{}example:latest}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                              \PY{n}{hyperparameters}\PY{o}{=}\PY{n}{hyperparameters}\PY{p}{)}
+        
+        \PY{n}{estimator}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{file:///tmp/cifar\PYZhy{}10\PYZhy{}data}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{predictor} \PY{o}{=} \PY{n}{estimator}\PY{o}{.}\PY{n}{deploy}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{instance\PYZus{}type}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsubsection{Make Predictions Using the Amazon SageMaker Python
+SDK}\label{make-predictions-using-the-amazon-sagemaker-python-sdk}
+
+To make predictions, you use an image that is converted into JSON format
+with OpenCV. You send this as an inference request. You also install
+OpenCV to deserialize the image that is used to make predictions.
+
+The JSON response is the probability that the image belongs to each of
+the 10 classes and the most likely class that it belongs to. For a list
+of classes, see the
+\href{https://www.cs.toronto.edu/~kriz/cifar.html}{CIFAR-10 website}. We
+didn't train the model for long, so we aren't expecting very accurate
+results.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{!} pip install opencv\PYZhy{}python
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k+kn}{import} \PY{n+nn}{cv2}
+        \PY{k+kn}{import} \PY{n+nn}{numpy}
+        
+        \PY{k+kn}{from} \PY{n+nn}{sagemaker}\PY{n+nn}{.}\PY{n+nn}{predictor} \PY{k}{import} \PY{n}{json\PYZus{}serializer}\PY{p}{,} \PY{n}{json\PYZus{}deserializer}
+        
+        \PY{n}{image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/cat.png}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} resize, as our model is expecting images in 32x32.}
+        \PY{n}{image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{resize}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{32}\PY{p}{,} \PY{l+m+mi}{32}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{data} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{instances}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{numpy}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{image}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{o}{.}\PY{n}{tolist}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZcb{}}
+        
+        \PY{c+c1}{\PYZsh{} The request and response format is JSON for TensorFlow Serving.}
+        \PY{c+c1}{\PYZsh{} For more information: https://www.tensorflow.org/serving/api\PYZus{}rest\PYZsh{}predict\PYZus{}api}
+        \PY{n}{predictor}\PY{o}{.}\PY{n}{accept} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{application/json}\PY{l+s+s1}{\PYZsq{}}
+        \PY{n}{predictor}\PY{o}{.}\PY{n}{content\PYZus{}type} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{application/json}\PY{l+s+s1}{\PYZsq{}}
+        
+        \PY{n}{predictor}\PY{o}{.}\PY{n}{serializer} \PY{o}{=} \PY{n}{json\PYZus{}serializer}
+        \PY{n}{predictor}\PY{o}{.}\PY{n}{deserializer} \PY{o}{=} \PY{n}{json\PYZus{}deserializer}
+        
+        \PY{c+c1}{\PYZsh{} For more information on the predictor class.}
+        \PY{c+c1}{\PYZsh{} https://github.com/aws/sagemaker\PYZhy{}python\PYZhy{}sdk/blob/master/src/sagemaker/predictor.py}
+        \PY{n}{predictor}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\textcolor{ansi-cyan}{algo-1-L58J2\_1  |} 172.18.0.1 - - [03/Aug/2018:22:32:52 +0000] "POST /invocations HTTP/1.1" 200 229 "-" "-"
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} \{'predictions': [\{'probabilities': [2.29861e-05,
+            0.0104983,
+            0.147974,
+            0.01538,
+            0.0478089,
+            0.00164997,
+            0.758483,
+            0.0164191,
+            0.00125304,
+            0.000510801],
+           'classes': 6\}]\}
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{predictor}\PY{o}{.}\PY{n}{delete\PYZus{}endpoint}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{Part 2: Training and Hosting Your Algorithm in Amazon
+SageMaker}\label{part-2-training-and-hosting-your-algorithm-in-amazon-sagemaker}
+
+After packaging your container, you can use it to train and serve
+models.
+
+\subsubsection{Set Up the Environment}\label{set-up-the-environment}
+
+Specify the S3 bucket to use and the IAM role needed to work with Amazon
+SageMaker.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} S3 prefix}
+        \PY{n}{prefix} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DEMO\PYZhy{}tensorflow\PYZhy{}cifar10}\PY{l+s+s1}{\PYZsq{}}
+\end{Verbatim}
+
+
+    \subsubsection{Create the Session}\label{create-the-session}
+
+The session remembers connection parameters to Amazon SageMaker. you
+perform all of our Amazon SageMaker operations in the session.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{import} \PY{n+nn}{sagemaker} \PY{k}{as} \PY{n+nn}{sage}
+        
+        \PY{n}{sess} \PY{o}{=} \PY{n}{sage}\PY{o}{.}\PY{n}{Session}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsubsection{Upload the Data for
+Training}\label{upload-the-data-for-training}
+
+To upload the data to a default S3 bucket, you use the tools provided by
+the Amazon SageMaker Python SDK.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{WORK\PYZus{}DIRECTORY} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/tmp/cifar\PYZhy{}10\PYZhy{}data}\PY{l+s+s1}{\PYZsq{}}
+        
+        \PY{n}{data\PYZus{}location} \PY{o}{=} \PY{n}{sess}\PY{o}{.}\PY{n}{upload\PYZus{}data}\PY{p}{(}\PY{n}{WORK\PYZus{}DIRECTORY}\PY{p}{,} \PY{n}{key\PYZus{}prefix}\PY{o}{=}\PY{n}{prefix}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsubsection{Train on Amazon
+SageMaker}\label{train-on-amazon-sagemaker}
+
+To train a model on Amazon SageMaker, you use the Amazon SageMaker
+Python SDK similar to the way that you used it to train a model locally.
+You do the following:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Change the train\_instance\_type from \texttt{local} to one of the
+  \href{https://aws.amazon.com/sagemaker/pricing/instance-types/}{supported
+  EC2 instance types}.
+\item
+  Specify the URL of the Amazon ECR image that you pushed.
+\item
+  Make sure that your local training dataset is in Amazon S3 and that
+  the S3 URL to the dataset is passed into the \texttt{fit()} call.
+\end{enumerate}
+
+Begin by fetching the URL of the Amazon ECR image.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{import} \PY{n+nn}{boto3}
+        
+        \PY{n}{client} \PY{o}{=} \PY{n}{boto3}\PY{o}{.}\PY{n}{client}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sts}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{account} \PY{o}{=} \PY{n}{client}\PY{o}{.}\PY{n}{get\PYZus{}caller\PYZus{}identity}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Account}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        
+        \PY{n}{my\PYZus{}session} \PY{o}{=} \PY{n}{boto3}\PY{o}{.}\PY{n}{session}\PY{o}{.}\PY{n}{Session}\PY{p}{(}\PY{p}{)}
+        \PY{n}{region} \PY{o}{=} \PY{n}{my\PYZus{}session}\PY{o}{.}\PY{n}{region\PYZus{}name}
+        
+        \PY{n}{algorithm\PYZus{}name} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tensorflow\PYZhy{}cifar10\PYZhy{}example}\PY{l+s+s1}{\PYZsq{}}
+        
+        \PY{n}{ecr\PYZus{}image} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{.dkr.ecr.}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{.amazonaws.com/}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{:latest}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{account}\PY{p}{,} \PY{n}{region}\PY{p}{,} \PY{n}{algorithm\PYZus{}name}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ecr\PYZus{}image}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{from} \PY{n+nn}{sagemaker}\PY{n+nn}{.}\PY{n+nn}{estimator} \PY{k}{import} \PY{n}{Estimator}
+        
+        \PY{n}{hyperparameters} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{train\PYZhy{}steps}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{100}\PY{p}{\PYZcb{}}
+        
+        \PY{n}{instance\PYZus{}type} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ml.m4.xlarge}\PY{l+s+s1}{\PYZsq{}}
+        
+        \PY{n}{estimator} \PY{o}{=} \PY{n}{Estimator}\PY{p}{(}\PY{n}{role}\PY{o}{=}\PY{n}{role}\PY{p}{,}
+                              \PY{n}{train\PYZus{}instance\PYZus{}count}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}
+                              \PY{n}{train\PYZus{}instance\PYZus{}type}\PY{o}{=}\PY{n}{instance\PYZus{}type}\PY{p}{,}
+                              \PY{n}{image\PYZus{}name}\PY{o}{=}\PY{n}{ecr\PYZus{}image}\PY{p}{,}
+                              \PY{n}{hyperparameters}\PY{o}{=}\PY{n}{hyperparameters}\PY{p}{)}
+        
+        \PY{n}{estimator}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{data\PYZus{}location}\PY{p}{)}
+        
+        \PY{n}{predictor} \PY{o}{=} \PY{n}{estimator}\PY{o}{.}\PY{n}{deploy}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{instance\PYZus{}type}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/cat.png}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} resize, as our model is expecting images in 32x32.}
+        \PY{n}{image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{resize}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{32}\PY{p}{,} \PY{l+m+mi}{32}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{data} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{instances}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{numpy}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{image}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{o}{.}\PY{n}{tolist}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZcb{}}
+        
+        \PY{n}{predictor}\PY{o}{.}\PY{n}{accept} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{application/json}\PY{l+s+s1}{\PYZsq{}}
+        \PY{n}{predictor}\PY{o}{.}\PY{n}{content\PYZus{}type} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{application/json}\PY{l+s+s1}{\PYZsq{}}
+        
+        \PY{n}{predictor}\PY{o}{.}\PY{n}{serializer} \PY{o}{=} \PY{n}{json\PYZus{}serializer}
+        \PY{n}{predictor}\PY{o}{.}\PY{n}{deserializer} \PY{o}{=} \PY{n}{json\PYZus{}deserializer}
+        
+        \PY{n}{predictor}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsubsection{Optional: Clean Up}\label{optional-clean-up}
+
+You can see all of the training jobs, models, and endpoints that you
+created in the Amazon SageMaker console in your AWS account. When you're
+done with the endpoint, delete it to avoid accruing unnecessary charges.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{predictor}\PY{o}{.}\PY{n}{delete\PYZus{}endpoint}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{Reference}\label{reference}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-training-algo.html}{How
+  Amazon SageMaker Runs Your Training Image}
+\item
+  \href{https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-inference-code.html}{How
+  Amazon SageMaker Runs Your Inference Image}
+\item
+  \href{https://www.cs.toronto.edu/~kriz/cifar.html}{CIFAR-10 Dataset}
+\item
+  \href{https://github.com/aws/sagemaker-python-sdk}{Amazon SageMaker
+  Python SDK}
+\item
+  \href{https://docs.docker.com/engine/reference/builder/}{Dockerfile}
+\item
+  \href{https://github.com/awslabs/amazon-sagemaker-examples/blob/master/advanced_functionality/scikit_bring_your_own/scikit_bring_your_own.ipynb}{scikit-bring-your-own}
+\end{itemize}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
